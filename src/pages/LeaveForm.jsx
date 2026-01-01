@@ -7,7 +7,7 @@ const LeaveForm = () => {
       <div className="leave-form-wrapper">
         <h1 className="leave-form-title">Leave Application Form</h1>
         
-        <div className="leave-form-content">
+        <form className="leave-form-content">
           <div className="leave-form-group">
             <label className="leave-form-label" htmlFor="employeeName">
               <span className="leave-form-label-icon">👤</span>
@@ -88,7 +88,7 @@ const LeaveForm = () => {
             Submit Application 
             <span className="leave-form-button-icon">→</span>
           </button>
-        </div>
+        </form>
       </div>
     </div>
   )
