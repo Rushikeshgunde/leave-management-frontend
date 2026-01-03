@@ -12,18 +12,48 @@ const LeaveForm = () => {
     reason: ''
   });
 
-  const handeChange = (e) => {
+const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value 
-    }); 
-  };
+    });
+    
+    setErrors({
+      ...errors,
+      [name]: '',
+    })
+};
+    const validateForm = () => {
+      let newErrors = {};
 
-  const habdleSubmit = (e) => {
+      if(!formData.name) newErrors.name = "Name is required";
+      if(!formData.type) newErrors.type = "Leave type is required";
+      if(!formData.fromDate) newErrors.fromDate = "From date is required";
+      if(!formData.toDate) newErrors.toDate = "To date is required";
+      if(!formData.reason) newErrors.reason = "Reason is required";
+      setErrors(newErrors);
+
+      return Object.keys(newErrors).length === 0;
+    }
+
+  
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log("Leave date" , formData)
+    // console.log("Leave date" , formData)
+    // console.log(JSON.stringify(formData, null, 2));
+
+    if(validateForm()) {
+      console.log("leave date", formData)
+      alert("Form submitted successfully!");
+    }
+
+    
+
 
     // Reset form after submission
     setFormData({
@@ -41,7 +71,7 @@ const LeaveForm = () => {
       <div className="leave-form-wrapper">
         <h1 className="leave-form-title">Leave Application Form</h1>
 
-        <form onSubmit={habdleSubmit} className="leave-form-content">
+        <form onSubmit={handleSubmit} className="leave-form-content">
           <div className="leave-form-group">
             <label className="leave-form-label" htmlFor="employeeName">
               <span className="leave-form-label-icon">👤</span>
@@ -52,10 +82,11 @@ const LeaveForm = () => {
               id="employeeName"
               name="name"
               value={formData.name}
-              onChange={handeChange}
+              onChange={handleChange}
               className="leave-form-input"
               placeholder="Enter your full name"
             />
+            {errors.name && <span className='' style={{ color: 'red' }}>{errors.name}</span>}
           </div>
 
           <div className="leave-form-group">
@@ -68,7 +99,7 @@ const LeaveForm = () => {
               name="type"
               value={formData.type}
               
-              onChange={handeChange}
+              onChange={handleChange}
               className="leave-form-select"
             >
               <option value="">Select leave type</option>
@@ -79,6 +110,7 @@ const LeaveForm = () => {
               <option value="paternity">Paternity Leave</option>
               <option value="unpaid">Unpaid Leave</option>
             </select>
+            {errors.type && <span className='' style={{ color: 'red' }}>{errors.type}</span>}
           </div>
 
           <div className="leave-form-date-row">
@@ -92,9 +124,10 @@ const LeaveForm = () => {
                 id="fromDate"
                 name="fromDate"
                 value={formData.fromDate}
-                onChange={handeChange}
+                onChange={handleChange}
                 className="leave-form-input"
               />
+              {errors.fromDate && <span className='' style={{ color: 'red' }}>{errors.fromDate}</span>}
             </div>
 
             <div className="leave-form-group">
@@ -107,9 +140,10 @@ const LeaveForm = () => {
                 id="toDate"
                 name="toDate"
                 value={formData.toDate}
-                onChange={handeChange}
+                onChange={handleChange}
                 className="leave-form-input"
               />
+              {errors.toDate && <span className='' style={{ color: 'red' }}>{errors.toDate}</span>}
             </div>
           </div>
 
@@ -122,11 +156,12 @@ const LeaveForm = () => {
               id="reason"
               name="reason"
               value={formData.reason}
-              onChange={handeChange}
+              onChange={handleChange}
               rows="4"
               className="leave-form-textarea"
               placeholder="Please provide reason for leave"
             />
+            {errors.reason && <span className='' style={{ color: 'red' }}>{errors.reason}</span>}
           </div>
 
           <button type="submit" className="leave-form-button">
@@ -139,4 +174,4 @@ const LeaveForm = () => {
   )
 }
 
-export default LeaveForm
+export default LeaveForm;
