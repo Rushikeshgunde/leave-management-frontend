@@ -1,0 +1,203 @@
+/* ========================= */
+/* BASE STYLES */
+/* ========================= */
+
+.leave-reports-container {
+margin-left: 260px; /* Adjust based on sidebar width */
+  padding: 30px;
+  background: #f5f7fa;
+  /* min-height: 100vh; */
+}
+
+/* Header */
+.leave-reports-header {
+  margin-bottom: 25px;
+}
+
+.leave-reports-title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.leave-reports-subtitle {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ========================= */
+/* SUMMARY CARDS */
+/* ========================= */
+
+.leave-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.summary-card h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+.summary-card p {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.summary-card.approved p {
+  color: #16a34a;
+}
+
+.summary-card.pending p {
+  color: #d97706;
+}
+
+.summary-card.rejected p {
+  color: #dc2626;
+}
+
+/* ========================= */
+/* TABLE */
+/* ========================= */
+
+.leave-reports-table-wrapper {
+  height: 50vh;
+  background: white;
+  border-radius: 14px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.leave-reports-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.leave-reports-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f9fafb;
+  z-index: 5;
+  padding: 14px;
+  border-bottom: 2px solid #e5e7eb;
+}
+.leave-reports-table tbody {
+  display: block;
+  max-height: 400px;  
+  overflow-y: auto;
+}
+
+/* Keep header & body aligned */
+.leave-reports-table thead,
+.leave-reports-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Cells */
+.leave-reports-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+
+.leave-reports-table th,
+.leave-reports-table td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.leave-reports-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Status */
+.report-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.report-status.approved {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.report-status.rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+/* Laptop */
+@media (max-width: 1200px) {
+  .leave-reports-title {
+    font-size: 26px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .leave-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .leave-reports-container {
+    padding: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .leave-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .leave-reports-title {
+    font-size: 24px;
+  }
+
+  .leave-reports-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .leave-reports-table {
+    min-width: 700px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .leave-reports-container {
+    padding: 15px;
+  }
+
+  .leave-reports-title {
+    font-size: 22px;
+  }
+
+  .summary-card p {
+    font-size: 24px;
+  }
+}

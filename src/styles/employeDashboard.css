@@ -1,0 +1,673 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .emp-dashboard-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .emp-dashboard-header {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, #55b3d0 0%, #4b9ea2eb 100%);
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 99999;
+  }
+
+  .emp-header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .emp-dashboard-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 5px;
+  }
+
+  .emp-dashboard-subtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .emp-apply-leave-btn {
+    padding: 12px 24px;
+    background: white;
+    color: #667eea;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .emp-apply-leave-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* --------------------------------------------------------------------------------------- */
+   .nav-tabs {
+    max-width: 1400px;
+    /* margin: 0 auto; */
+    /* padding: 20px 30px 0; */
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .nav-tab {
+    padding: 4px 10px;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px ;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .nav-tab:hover {
+    background: #f9fafb;
+    border-color: #667eea;
+    transform:scale(1.08);
+  }
+
+  .nav-tab.active {
+    background: white;
+    color: #667eea;
+    border-color: #667eea;
+    /* border-bottom: 2px solid white; */
+    /* margin-bottom: -2px; */
+  }
+  /* --------------------------------------------------------------------------------------- */
+  /* -----------------------------------Logout Profile---------------------------------------------------- */
+  /* Profile Section Styles */
+.profile-section {
+  position: relative;
+}
+
+.profile-icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  padding: 8px 8px;
+  background: rgba(247, 248, 248, 0.902);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-icon-btn:hover {
+  background: rgba(212, 208, 208, 0.757);
+  border-color: rgba(212, 208, 208, 0.757);
+  transform: translateY(-2px);
+}
+
+.profile-icon {
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
+  /* background: white; */
+  /* border-radius: 50%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-name {
+  color: white;
+  font-weight: 600;
+}
+
+/* Dropdown Menu Styles */
+.profile-dropdown {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  min-width: 280px;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+  overflow: hidden;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dropdown Header */
+.profile-dropdown-header {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+}
+
+.profile-avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #4ca7c1 0%, #4b5ca2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-dropdown-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-dropdown-email {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Divider */
+.profile-dropdown-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 8px 12px;
+}
+
+/* Dropdown Items */
+.profile-dropdown-item {
+  width: 100%;
+  padding: 5px 0 8px 10px;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  font-family: inherit;
+}
+
+.profile-dropdown-item:hover {
+  background: #f3f4f6;
+}
+
+.profile-dropdown-item:active {
+  transform: scale(0.98);
+}
+
+.dropdown-item-icon {
+  font-size: 18px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Logout Button Special Styling */
+.profile-dropdown-item.logout-item {
+  color: #dc2626;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.profile-dropdown-item.logout-item:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.profile-dropdown-item.logout-item .dropdown-item-icon {
+  color: #dc2626;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .profile-name {
+    display: none;
+  }
+
+  .profile-icon-btn {
+    padding: 8px 8px;
+  }
+
+  .profile-dropdown {
+    right: -10px;
+    min-width: 260px;
+  }
+
+  .profile-dropdown-header {
+    padding: 16px;
+  }
+
+  .profile-dropdown-item {
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-dropdown {
+    right: 0;
+    left: auto;
+    min-width: 240px;
+  }
+
+  .profile-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+}
+
+/* Click Outside to Close - Optional overlay */
+/* .profile-dropdown::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+} */
+  /* --------------------------------------------------------------------------------------- */
+
+  .emp-dashboard-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  .emp-leave-balance-section {
+    margin:0 30px 30px 30px;
+  }
+
+  .emp-section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 20px;
+  }
+
+  .emp-balance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .emp-balance-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .emp-balance-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .emp-balance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .emp-balance-type {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .emp-balance-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .emp-balance-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .emp-balance-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .emp-balance-row.highlight {
+    padding-top: 10px;
+    border-top: 1px solid #f3f4f6;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .emp-balance-label {
+    color: #6b7280;
+  }
+
+  .emp-balance-value {
+    color: #1f2937;
+    font-weight: 600;
+  }
+
+  .emp-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #f3f4f6;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .emp-progress-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+
+  .emp-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 25px;
+  }
+
+  .emp-requests-section {
+    margin:0 30px 30px 30px;
+
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .emp-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .emp-view-all-btn {
+    background: none;
+    border: none;
+    color: #667eea;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+
+  .emp-view-all-btn:hover {
+    color: #764ba2;
+  }
+
+  .emp-requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .emp-request-card {
+    background: #eceeef;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .emp-request-card:hover {
+    background: #e4f7ef;
+    transform: translateX(5px);
+  }
+
+  .emp-request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+
+  .emp-request-type {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 5px;
+  }
+
+  .emp-request-date {
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  .emp-status-badge {
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .emp-status-pending {
+    background: #fef3c7;
+    color: #d97706;
+  }
+
+  .emp-status-approved {
+    background: #d1fae5;
+    color: #059669;
+  }
+
+  .emp-status-rejected {
+    background: #fee2e2;
+    color: #dc2626;
+  }
+
+  .emp-request-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #6b7280;
+  }
+
+  .emp-request-days {
+    font-weight: 600;
+  }
+/* -------------------------------------------------------------------------------------- */
+  
+
+/* -------------------------------------------------------------------------------------- */
+  .emp-sidebar {
+    margin: 0 30px 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .emp-holidays-card,
+  .emp-quick-actions-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .emp-sidebar-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 20px;
+  }
+
+  .emp-holidays-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .emp-holiday-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .emp-holiday-item:hover {
+    background: #f3f4f6;
+  }
+
+  .emp-holiday-date {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #4ca7c1 0%, #4b5ca2 100%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .emp-holiday-day {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .emp-holiday-month {
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  .emp-holiday-info {
+    flex: 1;
+  }
+
+  .emp-holiday-name {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .emp-holiday-day-name {
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  .emp-actions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .emp-action-btn {
+    padding: 12px 16px;
+    background: #f9fafb;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+    transition: all 0.3s ease;
+  }
+
+  .emp-action-btn:hover {
+    background: linear-gradient(135deg, #328ea8 0%, #57c8da 100%);
+    color: white;
+    transform: translateX(5px);
+  }
+
+  .emp-action-icon {
+    font-size: 20px;
+  }
+
+  @media (max-width: 1200px) {
+    .emp-main-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .emp-dashboard-title {
+      font-size: 24px;
+    }
+
+    .emp-balance-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .emp-dashboard-content {
+      padding: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .emp-dashboard-header {
+      padding: 20px;
+    }
+
+    .emp-dashboard-title {
+      font-size: 20px;
+    }
+  }

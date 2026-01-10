@@ -1,145 +1,267 @@
- .leave-form-container {
-    /* min-height: 100vh; */
-    background-color: #f5f7fa;
-    padding: 10px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
+.leave-form-wrapper {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+}
+
+/* .leave-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.leave-form-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+
+} */
+
+.leave-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center content horizontally */
+  position: relative;
+  /* Needed to position close button */
+  margin-bottom: 16px;
+}
+
+/* Header title */
+.leave-form-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+}
+
+
+
+/* Close button hover */
+.leave-form-header .close-btn:hover {
+  color: red;
+  transform: translateY(-50%) scale(1.2);
+}
+
+
+
+.close-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  background: rgb(223, 223, 235);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.close-btn:hover {
+  background: hsl(0, 1%, 78%);
+  color: red;
+  transform: scale(1.2);
+}
+
+.leave-form-group {
+  margin-bottom: 12px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.leave-form-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------------------------------------------- */
+.leave-form-container {
+  /* min-height: 100vh; */
+  background-color: #f5f7fa;
+  padding: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leave-form-wrapper {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.leave-form-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+.leave-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.leave-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.leave-form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.leave-form-input {
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+  background-color: #ffffff;
+}
+
+.leave-form-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.leave-form-select {
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.leave-form-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.leave-form-textarea {
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: vertical;
+  font-family: inherit;
+  background-color: #ffffff;
+}
+
+.leave-form-textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.leave-form-date-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.leave-form-button {
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-top: 10px;
+}
+
+.leave-form-button:hover {
+  background-color: #2563eb;
+}
+
+.leave-form-button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
   .leave-form-wrapper {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    width: 100%;
-    max-width: 600px;
+    padding: 24px;
   }
 
   .leave-form-title {
-    font-size: 28px;
-    font-weight: 600;
-    color: #1a202c;
-    margin: 0 0 30px 0;
-    text-align: center;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leave-form-container {
+    padding: 12px;
   }
 
-  .leave-form-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  .leave-form-wrapper {
+    padding: 20px;
   }
 
-  .leave-form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
+  .leave-form-title {
+    font-size: 22px;
   }
-
-  .leave-form-label {
-    font-size: 14px;
-    font-weight: 500;
-    color: #374151;
-    margin-bottom: 4px;
-  }
-
-  .leave-form-input {
-    padding: 12px 16px;
-    font-size: 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.2s;
-    background-color: #ffffff;
-  }
-
-  .leave-form-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-
-  .leave-form-select {
-    padding: 12px 16px;
-    font-size: 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.2s;
-    background-color: #ffffff;
-    cursor: pointer;
-  }
-
-  .leave-form-select:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-
-  .leave-form-textarea {
-    padding: 12px 16px;
-    font-size: 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: vertical;
-    font-family: inherit;
-    background-color: #ffffff;
-  }
-
-  .leave-form-textarea:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-
-  .leave-form-date-row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .leave-form-button {
-    padding: 14px 24px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
-    background-color: #3b82f6;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-    margin-top: 10px;
-  }
-
-  .leave-form-button:hover {
-    background-color: #2563eb;
-  }
-
-  .leave-form-button:active {
-    transform: scale(0.98);
-  }
-
-  @media (max-width: 768px) {
-    .leave-form-wrapper {
-      padding: 24px;
-    }
-    
-    .leave-form-title {
-      font-size: 24px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .leave-form-container {
-      padding: 12px;
-    }
-    
-    .leave-form-wrapper {
-      padding: 20px;
-    }
-    
-    .leave-form-title {
-      font-size: 22px;
-    }
-  }
+}

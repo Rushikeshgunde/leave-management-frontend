@@ -1,0 +1,316 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .my-leaves-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .my-leaves-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .my-leaves-header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .my-leaves-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 5px;
+  }
+
+  .my-leaves-subtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .my-leaves-apply-btn {
+    padding: 12px 24px;
+    background: white;
+    color: #667eea;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .my-leaves-apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .my-leaves-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+
+  .my-leaves-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .my-leaves-filters {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .filter-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .filter-select,
+  .filter-search {
+    padding: 10px 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .filter-select:focus,
+  .filter-search:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .my-leaves-table-container {
+    overflow-x: auto;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .my-leaves-table-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .my-leaves-table-container::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 10px;
+  }
+
+  .my-leaves-table-container::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+  }
+
+  .my-leaves-table-container::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  .my-leaves-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1200px;
+  }
+
+  .my-leaves-table th {
+    text-align: left;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7280;
+    border-bottom: 2px solid #f3f4f6;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+  }
+
+  .my-leaves-table td {
+    padding: 15px 12px;
+    font-size: 14px;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .my-leaves-table tbody tr:hover {
+    background: #f9fafb;
+  }
+
+  .leave-type-badge {
+    padding: 5px 12px;
+    background: #e0e7ff;
+    color: #667eea;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  .days-badge {
+    padding: 5px 10px;
+    background: #f3f4f6;
+    color: #374151;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .reason-text {
+    max-width: 200px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .my-status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  .my-status-pending {
+    background: #fef3c7;
+    color: #d97706;
+  }
+
+  .my-status-approved {
+    background: #d1fae5;
+    color: #059669;
+  }
+
+  .my-status-rejected {
+    background: #fee2e2;
+    color: #dc2626;
+  }
+
+  .my-view-btn {
+    padding: 6px 16px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .my-view-btn:hover {
+    background: #764ba2;
+  }
+
+  .my-leaves-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #f3f4f6;
+  }
+
+  .pagination-btn {
+    padding: 8px 16px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .pagination-btn:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+  }
+
+  .pagination-numbers {
+    display: flex;
+    gap: 10px;
+  }
+
+  .pagination-number {
+    width: 36px;
+    height: 36px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pagination-number:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+  }
+
+  .pagination-number.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+  }
+
+  @media (max-width: 768px) {
+    .my-leaves-title {
+      font-size: 24px;
+    }
+
+    .my-leaves-content {
+      padding: 20px;
+    }
+
+    .my-leaves-filters {
+      flex-direction: column;
+    }
+
+    .filter-group {
+      min-width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .my-leaves-header {
+      padding: 20px;
+    }
+
+    .my-leaves-title {
+      font-size: 20px;
+    }
+  }

@@ -1,0 +1,169 @@
+/* ============================ */
+/* PAGE BACKGROUND */
+/* ============================ */
+
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ============================ */
+/* LOGIN CARD */
+/* ============================ */
+
+.login-card {
+  background: white;
+  width: 420px;
+  max-width: 100%;
+  border-radius: 18px;
+  padding: 35px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ============================ */
+/* TEXT */
+/* ============================ */
+
+.login-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ============================ */
+/* FORM */
+/* ============================ */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  font-size: 14px;
+  color: #9ca3af;
+  transform: translateY(-50%);
+  background: white;
+  padding: 0 5px;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+/* Floating label animation */
+.input-group input:focus,
+.input-group input:valid {
+  border-color: #667eea;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: -8px;
+  font-size: 12px;
+  color: #667eea;
+}
+
+/* ============================ */
+/* BUTTON */
+/* ============================ */
+
+.login-btn {
+  margin-top: 10px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* ============================ */
+/* FOOTER */
+/* ============================ */
+
+.login-footer {
+  margin-top: 25px;
+  font-size: 12px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+/* ============================ */
+/* RESPONSIVE */
+/* ============================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 30px;
+  }
+
+  .login-title {
+    font-size: 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 25px;
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .login-btn {
+    font-size: 15px;
+  }
+}
