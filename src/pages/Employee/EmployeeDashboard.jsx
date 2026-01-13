@@ -75,7 +75,7 @@ export default function EmployeeDashboard() {
               Welcome Back, Rushikesh 👋
             </h1>
             <p className="emp-dashboard-subtitle">
-              Here's your leave overview
+              Here's your employee leave overview
             </p>
           </div>
 

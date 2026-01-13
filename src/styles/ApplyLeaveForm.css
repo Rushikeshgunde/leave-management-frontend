@@ -156,7 +156,7 @@
   }
 
   .apply-submit-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4ca7c1 0%, #4b5ca2 100%);
     color: white;
     display: flex;
     align-items: center;
@@ -271,7 +271,7 @@
   .apply-contact-btn {
     width: 100%;
     padding: 10px 20px;
-    background: #667eea;
+    background: linear-gradient(135deg, #4ca7c1 0%, #4b5ca2 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -282,7 +282,7 @@
   }
 
   .apply-contact-btn:hover {
-    background: #764ba2;
+    background: linear-gradient(135deg, #33bbe0 0%, #425dc8 100%);
   }
 
   @media (max-width: 1200px) {

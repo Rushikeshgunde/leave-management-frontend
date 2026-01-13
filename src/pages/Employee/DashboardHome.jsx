@@ -12,6 +12,16 @@ const navigate = useNavigate();
 //  const [activeTab, setActiveTab] = useState('dashboard');
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
+  // const [upcomingLeaves, setUpcomingLeaves] = useState([]);
+
+  const upcomingLeaves = [
+  { id: 1, name: "Rushi Gunde", date: "2026-01-20", type: "Annual Leave" },
+  { id: 2, name: "Ajinkya Jondhale", date: "2026-01-22", type: "Casual Leave" },
+  { id: 3, name: "Akash kadam", date: "2026-01-25", type: "Sick Leave" }
+];
+
+
+
   const handleLogout = () => {
     // ============================================
     // API INTEGRATION POINT - LOGOUT
@@ -146,7 +156,29 @@ const navigate = useNavigate();
           <div className="emp-sidebar">
 {/* ------------------------------------------------------------------------------------- */}
                {/* Add Calender  */}
-
+                 <div className="sidebar-section">
+            {/* Upcoming Leaves Card */}
+            <div className="upcoming-card">
+              <h3 className="upcoming-title">📅 Upcoming Leaves</h3>
+              <div className="upcoming-list">
+                {upcomingLeaves.map((leave, index) => (
+                  <div key={index} className="upcoming-item">
+                    <div className="upcoming-avatar">
+                       {leave.name.split(' ')[0][0]}
+                        {leave.name.split(' ').length > 1 
+                          ? leave.name.split(' ').slice(-1)[0][0] 
+                          : ''}
+                    </div>
+                    <div className="upcoming-info">
+                      <div className="upcoming-name">{leave.name}</div>
+                      <div className="upcoming-date">{leave.date}</div>
+                      <div className="upcoming-type">{leave.type}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              </div>
+     </div>
 {/* ------------------------------------------------------------------------------------- */}
 
             {/* <div className="emp-quick-actions-card">
