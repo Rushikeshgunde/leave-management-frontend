@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/employeDashboard.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import {Outlet, useNavigate } from 'react-router-dom';
 
 
@@ -48,15 +48,22 @@ const navigate = useNavigate();
 
   // ============================================
   // API INTEGRATION POINT - RECENT LEAVE REQUESTS
-  // ============================================
-  // TODO: Replace with API call to fetch employee's recent requests
-  // Example: fetch('YOUR_API_URL/employee/recent-requests')
+
+  const [recentRequests, setRecentRequests] = useState([]);
+
+ useEffect(() => {
+  fetch("http://localhost:8000/recent_leave")
+    .then(res => res.json())
+    .then(data => setRecentRequests(data))
+    .catch(err => {
+      console.error(err);
+      setRecentRequests([]);
+    });
+}, []);
+
+  //========================================================================================
+ 
   
-  const recentRequests = [
-    { id: 1, type: 'Annual Leave', from: '2026-01-15', to: '2026-01-20', days: 5, status: 'Approved', appliedOn: '2026-01-05' },
-    { id: 2, type: 'Sick Leave', from: '2026-01-10', to: '2026-01-12', days: 3, status: 'Pending', appliedOn: '2026-01-08' },
-    { id: 3, type: 'Casual Leave', from: '2025-12-20', to: '2025-12-21', days: 2, status: 'Approved', appliedOn: '2025-12-10' }
-  ];
 
   // ============================================
   // API INTEGRATION POINT - UPCOMING HOLIDAYS
@@ -133,24 +140,40 @@ const navigate = useNavigate();
               <button className="emp-view-all-btn">View All →</button>
             </div>
             <div className="emp-requests-list">
-              {recentRequests.map((request) => (
-                <div key={request.id} className="emp-request-card">
-                  <div className="emp-request-header">
-                    <div>
-                      <h4 className="emp-request-type">{request.type}</h4>
-                      <p className="emp-request-date">{request.from} to {request.to}</p>
-                    </div>
-                    <span className={`emp-status-badge emp-status-${request.status.toLowerCase()}`}>
-                      {request.status}
-                    </span>
-                  </div>
-                  <div className="emp-request-footer">
-                    <span className="emp-request-days">🗓️ {request.days} days</span>
-                    <span className="emp-request-applied">Applied: {request.appliedOn}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+  {Array.isArray(recentRequests) && recentRequests.length > 0 ? (
+    recentRequests.map((request) => (
+      
+      <div key={request.id} className="emp-request-card">
+        <div className="emp-request-header">
+          <div>
+            <h4 className="emp-request-type">{request.leave_type}</h4>
+            <p className="emp-request-date">
+              {request.from_date?.split('T')[0]} to {request.to_date?.split('T')[0]}
+            </p>
+          </div>
+
+          <span
+            className={`emp-status-badge emp-status-${request.status?.toLowerCase()}`}
+          >
+            {request.status}
+          </span>
+        </div>
+
+        <div className="emp-request-footer">
+          <span className="emp-request-days">
+            🗓️ {request.number_of_days} days
+          </span>
+          <span className="emp-request-applied">
+            Applied: {request.appliedOn?.split('T')[0]}
+          </span>
+        </div>
+      </div>
+    ))
+  ) : (
+    <p className="emp-no-data">No recent leave requests</p>
+  )}
+</div>
+
           </div>
 
           <div className="emp-sidebar">
