@@ -1,7 +1,30 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "../../styles/LeaveReports.css";
+import { useOutletContext } from "react-router-dom";
 
 function LeaveReports() {
+
+const {setHeaderConfig}=useOutletContext();
+
+const [leaves , setLeaves]=useState([])
+
+  useEffect(()=>{
+    setHeaderConfig({
+      title:"Leave Report Management",
+      subtitle: "Overview of employee leave statistics",
+      // showButton: true
+    })
+  },[])
+
+    const leaveStats = [
+    // { title: 'Total Leaves', count: leaves.length || 25, icon: '📊', color: '#667eea' },
+    { title: 'Pending', count: leaves.filter(l => l.status === 'Pending').length || 5, icon: '⏳', color: '#f59e0b' },
+    { title: 'Approved', count: leaves.filter(l => l.status === 'Approved').length || 18, icon: '✅', color: '#10b981' },
+    { title: 'Rejected', count: leaves.filter(l => l.status === 'Rejected').length || 2, icon: '❌', color: '#ef4444' }
+  ];
+
+
+
   const [reports] = useState([
     {
       id: 1,
@@ -160,28 +183,45 @@ function LeaveReports() {
   return (
     <div className="leave-reports-container">
       {/* Header */}
-      <div className="leave-reports-header">
+      {/* <div className="leave-reports-header">
         <h1 className="leave-reports-title">Leave Reports</h1>
         <p className="leave-reports-subtitle">
           Overview of employee leave statistics
         </p>
-      </div>
+      </div> */}
 
       {/* Summary Cards */}
-      <div className="leave-summary-grid">
-        <div className="summary-card approved">
+      {/* <div className="leave-summary-grid"> */}
+        {/* <div className="summary-card approved">
+          <div className="stat-icon" style={{ backgroundColor: `${stat.color}20` }}>
+                    <span style={{ fontSize: '32px' }}>{stat.icon}</span>
+                  </div>
           <h3>Approved Leaves</h3>
           <p>18</p>
-        </div>
-        <div className="summary-card pending">
+        </div> */}
+        {/* <div className="summary-card pending">
           <h3>Pending Leaves</h3>
           <p>6</p>
-        </div>
-        <div className="summary-card rejected">
+        </div> */}
+        {/* <div className="summary-card rejected">
           <h3>Rejected Leaves</h3>
           <p>4</p>
-        </div>
-      </div>
+        </div> */}
+
+        <div className="stats-grid">
+              {leaveStats.map((stat, index) => (
+                <div key={index} className="stat-card">
+                  <div className="stat-icon" style={{ backgroundColor: `${stat.color}20` }}>
+                    <span style={{ fontSize: '32px' }}>{stat.icon}</span>
+                  </div>
+                  <div className="stat-info">
+                    <p className="stat-title">{stat.title}</p>
+                    <h2 className="stat-count" style={{ color: stat.color }}>{stat.count}</h2>
+                  </div>
+                </div>
+              ))}
+            </div>
+      {/* </div> */}
 
       {/* Table */}
       <div className="leave-reports-table-wrapper">

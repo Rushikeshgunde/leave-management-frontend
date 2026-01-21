@@ -1,11 +1,30 @@
   import { useState, useEffect } from 'react';
 import React from 'react';
-// import LeaveForm from './LeaveForm';
+import LeaveForm from './LeaveForm';
 import '../../styles/Adminhome.css';
+import { useOutletContext } from "react-router-dom";
 
 export default function AdminDashboard() {
   // ============================================
   // STATE MANAGEMENT
+  // const {setHeadingConfig}=useOutletContext();
+
+   const { setHeaderConfig } = useOutletContext();
+  const [showLeaveForm, setShowLeaveForm] = useState(false);
+
+  useEffect(()=>{
+    setHeaderConfig({
+       title: "Admin Dashboard",
+      subtitle: "Overview of leave and employee activity",
+      buttonText: "Apply Leave",
+      showButton: true,
+      onButtonClick: () => setShowLeaveForm(true)
+    });
+      return () => {
+      setHeaderConfig({ showButton: false });
+    };
+  }, []);
+  
   // ============================================
   const [leaves, setLeaves] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -48,48 +67,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="admin-dashboard-wrapper">
-      {/* ================= SIDEBAR ================= */}
-      {/* <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
-        <div className="sidebar-header">
-          <h2 className="sidebar-logo">🏢 HR Portal</h2>
-          <button 
-            className="sidebar-close-btn"
-            onClick={() => setSidebarOpen(false)}
-          >
-            ✕
-          </button>
-        </div>
-
-        <nav className="sidebar-nav">
-          <a href="/admin" className="nav-item active">
-            <span className="nav-icon">📊</span>
-            <span className="nav-text">Dashboard</span>
-          </a>
-          <a href="/admin/employees" className="nav-item">
-            <span className="nav-icon">👥</span>
-            <span className="nav-text">Employees</span>
-          </a>
-          <a href="/admin/leave-requests" className="nav-item">
-            <span className="nav-icon">📋</span>
-            <span className="nav-text">Leave Requests</span>
-          </a>
-          <a href="/admin/reports" className="nav-item">
-            <span className="nav-icon">📈</span>
-            <span className="nav-text">Reports</span>
-          </a>
-          <a href="/admin/settings" className="nav-item">
-            <span className="nav-icon">⚙️</span>
-            <span className="nav-text">Settings</span>
-          </a>
-        </nav>
-
-        <div className="sidebar-footer">
-          <button className="logout-sidebar-btn">
-            <span className="nav-icon">🚪</span>
-            <span className="nav-text">Logout</span>
-          </button>
-        </div>
-      </aside> */}
+    
 
       {/* ================= MAIN CONTENT ================= */}
       <div className="admin-main-content">
@@ -102,23 +80,15 @@ export default function AdminDashboard() {
         </button>
 
         <div className="dashboard-container">
-          {/* <div className="dashboard-header">
-            <div className="dashboard-header-content">
-              <div>
-                <h1 className="dashboard-title">Leave Management Dashboard</h1>
-                <p className="dashboard-subtitle">Manage and track employee leave requests</p>
-              </div>
-              <button 
-                className="dashboard-apply-btn"
-                onClick={() => setShowForm(true)}
-              >
-                <span>➕</span> Apply for Leave
-              </button>
-            </div>
-          </div> */}
+          
 
           {/* ✅ LEAVE FORM MODAL */}
-          {showForm && <LeaveForm closeForm={closeForm} refreshData={fetchleave} />}
+          {showLeaveForm && (
+             <LeaveForm 
+             onClose={()=>setShowLeaveForm(false)} 
+             refreshData={()=>console.log("refresh")}
+              />
+            )}
 
           <div className="dashboard-content">
             {/* Stats Cards */}

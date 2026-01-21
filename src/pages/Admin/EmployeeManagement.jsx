@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/EmployeeManagement.css';
 import AddEmployeeModal from "./AddEmployeeModal";
+import { useOutletContext } from "react-router-dom";
 
 
 // ============================================
@@ -11,6 +12,21 @@ import AddEmployeeModal from "./AddEmployeeModal";
 export default function EmployeeManagement() {
   // ============================================
   // STATE MANAGEMENT
+  const {setHeaderConfig}=useOutletContext();
+
+  useEffect(()=>{
+    setHeaderConfig({
+      title:"Employee Management",
+      subtitle: "Manage employee records and information",
+        buttonText: "Add Employee",
+      onButtonClick: () => setShowAddModal(true),
+      showButton: true
+    })
+
+    return()=>{
+      setHeaderConfig({showButton:false})
+    }
+  },[] )
   // ============================================
   const [employees, setEmployees] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -143,23 +159,8 @@ export default function EmployeeManagement() {
   return (
     <div className="employee-management-container">
       {/* Header */}
-      {/* <div className="employee-header">
-        <div className="employee-header-content">
-          <div>
-            <h1 className="employee-title">Employee Management</h1>
-            <p className="employee-subtitle">Manage employee records and information</p>
-          </div>
-          <button className="add-employee-btn" onClick={handleAddEmployee}>
-            ➕ Add Employee
-          </button>
-        </div>
-      </div> */}
-      <div className="employee-header">
 
-       <button className="add-employee-btn" onClick={() => setShowAddModal(true)}>
-            ➕ Add Employee
-          </button>
-      </div>
+    
 
       {/* Stats Cards */}
       <div className="employee-stats-grid">

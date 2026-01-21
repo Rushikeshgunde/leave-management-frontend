@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import '../styles/LeaveForm.css';
+import '../../styles/LeaveForm.css';
 import axios from "axios";
 
 // ✅ PROPS FROM DASHBOARD: closeForm, refreshData
-const LeaveForm = ({ closeForm, refreshData }) => {
+const LeaveForm = ({ onClose, refreshData }) => {
 
   const [formData, setFormData] = useState({
     name: "",
@@ -59,7 +59,7 @@ const LeaveForm = ({ closeForm, refreshData }) => {
       });
 
       if (refreshData) refreshData();
-      if (closeForm) closeForm();
+      if (onClose) onClose();
 
     } catch (err) {
       console.error("Error applying leave:", err);
@@ -69,7 +69,7 @@ const LeaveForm = ({ closeForm, refreshData }) => {
 
   return (
     // ✅ OVERLAY
-    <div className="modal-overlay" >
+    <div className="modal-overlay"  >
       {/* ✅ STOP CLICK PROPAGATION */}
       <div className="leave-form-wrapper" onClick={e => e.stopPropagation()}>
 
@@ -79,7 +79,7 @@ const LeaveForm = ({ closeForm, refreshData }) => {
           <button
             type="button"
             className="close-btn"
-            onClick={closeForm}
+            onClick={onClose}
           >
             ✖
           </button>

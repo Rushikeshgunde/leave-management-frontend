@@ -2,9 +2,9 @@
   /* height: 100vh;          */
   overflow: hidden;       /* IMPORTANT: no scroll */
   margin-left: 260px;
-  padding: 30px;
+  padding: 20px;
   background: #f5f7fa;
-  min-height: 45vh;
+  /* min-height: 80vh; */
 }
 
 .leave-title {
@@ -19,6 +19,7 @@
 }
 
 .leave-table-wrapper {
+  height: 80vh;
   background: white;
   border-radius: 12px;
   padding: 0;
@@ -85,7 +86,7 @@
 /* Make tbody scrollable */
 .leave-table tbody {
   display: block;
-  max-height: 400px;          /* adjust height */
+  max-height: 520px;          /* adjust height */
   overflow-y: auto;
 }
 
@@ -172,7 +173,7 @@
 /* ============================= */
 
 .leave-approval-container {
-  padding: 30px;
+  padding: 20px;
   background: #f5f7fa;
   /* min-height: 100vh; */
 }
@@ -191,15 +192,20 @@
 .leave-table-wrapper {
   background: white;
   border-radius: 12px;
-  padding: 20px;
+  /* padding: 10px; */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   overflow-x: auto;
 }
+
 
 .leave-table {
   width: 100%;
   border-collapse: collapse;
   min-width: 900px;
+}
+
+.leave-table tbody::-webkit-scrollbar {
+  display: none;
 }
 
 .leave-table th,
@@ -210,7 +216,8 @@
   font-size: 14px;
 }
 
-.leave-table th {
+.leave-table thead th {
+  background: #dbe0df;
   font-weight: 600;
   color: #374151;
 }

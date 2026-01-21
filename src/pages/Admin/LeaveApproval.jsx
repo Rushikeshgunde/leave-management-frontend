@@ -1,7 +1,25 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "../../styles/LeaveApproval.css";
+import { useOutletContext } from "react-router-dom";
 
 function LeaveApproval() {
+
+const {setHeaderConfig}=useOutletContext();
+
+  useEffect(()=>{
+    setHeaderConfig({
+      title:"Leave Approval Management",
+      subtitle: "Review and approve employee leave requests",
+      // showButton: true
+    })
+
+    return()=>{
+      setHeaderConfig({showButton:false})
+    }
+  },[])
+
+
+
   const [leaveRequests, setLeaveRequests] = useState([
     {
       id: 1,
@@ -151,10 +169,10 @@ function LeaveApproval() {
 
   return (
     <div className="leave-approval-container">
-      <h1 className="leave-title">Leave Approval</h1>
+      {/* <h1 className="leave-title">Leave Approval</h1>
       <p className="leave-subtitle">
         Review and approve employee leave requests
-      </p>
+      </p> */}
 
       <div className="leave-table-wrapper">
         <table className="leave-table">

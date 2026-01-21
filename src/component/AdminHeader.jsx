@@ -1,20 +1,26 @@
 import React from 'react';
-import './AdminHeader.css';
+import './adminheader.css';
 
-export default function AdminHeader() {
+export default function AdminHeader({title,subtitle,buttonText,showButton, onButtonClick}) {
   return (
      <div className="dashboard-header">
             <div className="dashboard-header-content">
-              <div>
-                <h1 className="dashboard-title">Leave Management Dashboard</h1>
-                <p className="dashboard-subtitle">Manage and track employee leave requests</p>
+              <div className='dashboard-header-title'>
+                <h1 className="dashboard-title">{title} </h1>
+                <p className="dashboard-subtitle">{subtitle} </p>
               </div>
+
+              {
+                showButton && (
               <button 
                 className="dashboard-apply-btn"
-                onClick={() => setShowForm(true)}
+                onClick={onButtonClick}
               >
-                <span>➕</span> Apply for Leave
+                <span>➕</span> {buttonText}
               </button>
+                )
+              }
+             
             </div>
           </div>
 
