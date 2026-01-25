@@ -20,144 +20,7 @@ const {setHeaderConfig}=useOutletContext();
 
 
 
-  const [leaveRequests, setLeaveRequests] = useState([
-    {
-      id: 1,
-      name: "Rahul Sharma",
-      type: "Casual Leave",
-      from: "2026-01-10",
-      to: "2026-01-12",
-      reason: "Family function",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      type: "Sick Leave",
-      from: "2026-01-08",
-      to: "2026-01-08",
-      reason: "Fever",
-      status: "Pending",
-    },
-  ]);
+  const [leaveRequests, setLeaveRequests] = useState([]);
 
   const updateStatus = (id, newStatus) => {
     setLeaveRequests((prev) =>
@@ -182,6 +45,7 @@ const {setHeaderConfig}=useOutletContext();
               <th>Leave Type</th>
               <th>From</th>
               <th>To</th>
+              <th>Days</th> 
               <th>Reason</th>
               <th>Status</th>
               <th>Action</th>
@@ -202,6 +66,7 @@ const {setHeaderConfig}=useOutletContext();
                   <td>{leave.type}</td>
                   <td>{leave.from}</td>
                   <td>{leave.to}</td>
+                  <td>{leave.days} </td>
                   <td>{leave.reason}</td>
                   <td>
                     <span

@@ -20,7 +20,7 @@ const [formData, setformData]=useState({
   leave_type:'',
   from_date:'',
   to_date:'',
-  leave_reason:'',
+  leave_reason:'', 
   numberOfDays,
   contact_number:''
 })

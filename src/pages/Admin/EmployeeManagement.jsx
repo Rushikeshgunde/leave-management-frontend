@@ -4,30 +4,26 @@ import AddEmployeeModal from "./AddEmployeeModal";
 import { useOutletContext } from "react-router-dom";
 
 
-// ============================================
-// EMPLOYEE MANAGEMENT COMPONENT
-// ============================================
-
 
 export default function EmployeeManagement() {
   // ============================================
   // STATE MANAGEMENT
-  const {setHeaderConfig}=useOutletContext();
+  const { setHeaderConfig } = useOutletContext();
 
-  useEffect(()=>{
+  useEffect(() => {
     setHeaderConfig({
-      title:"Employee Management",
+      title: "Employee Management",
       subtitle: "Manage employee records and information",
-        buttonText: "Add Employee",
+      buttonText: "Add Employee",
       onButtonClick: () => setShowAddModal(true),
       showButton: true
     })
 
-    return()=>{
-      setHeaderConfig({showButton:false})
+    return () => {
+      setHeaderConfig({ showButton: false })
     }
-  },[] )
-  // ============================================
+  }, [])
+  // ==================================================================================
   const [employees, setEmployees] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
@@ -38,130 +34,152 @@ export default function EmployeeManagement() {
 
   const [showAddModal, setShowAddModal] = useState(false);
 
-  // ============================================
+  // =====================================================================================
   // API INTEGRATION POINT - FETCH EMPLOYEES
-  // ============================================
   // TODO: Replace with actual API call
-  // const fetchEmployees = async () => {
-  //   try {
-  //     const response = await fetch('YOUR_API_URL/employees');
-  //     const data = await response.json();
-  //     setEmployees(data);
-  //   } catch (error) {
-  //     console.error('Error fetching employees:', error);
-  //   }
-  // };
-
-  const fetchEmployees = () => {
-    // Demo data
-    const demoEmployees = [
-      {
-        id: 1,
-        name: 'John Doe',
-        email: 'john.doe@company.com',
-        department: 'Engineering',
-        position: 'Senior Developer',
-        phone: '+1 234-567-8900',
-        joinDate: '2023-01-15',
-        status: 'Active',
-        leaves: { total: 20, used: 8, available: 12 }
-      },
-      {
-        id: 2,
-        name: 'Jane Smith',
-        email: 'jane.smith@company.com',
-        department: 'Marketing',
-        position: 'Marketing Manager',
-        phone: '+1 234-567-8901',
-        joinDate: '2022-06-20',
-        status: 'Active',
-        leaves: { total: 20, used: 12, available: 8 }
-      },
-      {
-        id: 3,
-        name: 'Mike Johnson',
-        email: 'mike.johnson@company.com',
-        department: 'Sales',
-        position: 'Sales Executive',
-        phone: '+1 234-567-8902',
-        joinDate: '2023-03-10',
-        status: 'Active',
-        leaves: { total: 20, used: 5, available: 15 }
-      },
-      {
-        id: 4,
-        name: 'Sarah Williams',
-        email: 'sarah.williams@company.com',
-        department: 'HR',
-        position: 'HR Specialist',
-        phone: '+1 234-567-8903',
-        joinDate: '2021-09-05',
-        status: 'Active',
-        leaves: { total: 20, used: 15, available: 5 }
-      },
-      {
-        id: 5,
-        name: 'David Brown',
-        email: 'david.brown@company.com',
-        department: 'Engineering',
-        position: 'Junior Developer',
-        phone: '+1 234-567-8904',
-        joinDate: '2023-08-01',
-        status: 'Inactive',
-        leaves: { total: 20, used: 3, available: 17 }
-      }
-    ];
-    setEmployees(demoEmployees);
+  const fetchEmployees = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/displayemployee');
+      const data = await response.json();
+      setEmployees(data);
+    } catch (error) {
+      console.error('Error fetching employees:', error);
+    }
   };
+  // ======================================================================================
+
+  //   // Demo data
+    // const demoEmployees = [
+    //   {
+    //     id: 1,
+    //     name: 'John Doe',
+    //     email: 'john.doe@company.com',
+    //     department: 'Engineering',
+    //     position: 'Senior Developer',
+    //     phone: '+1 234-567-8900',
+    //     joinDate: '2023-01-15',
+    //     status: 'Active',
+    //     leaves: { total: 20, used: 8, available: 12 }
+    //   },
+    //   {
+    //     id: 2,
+    //     name: 'Jane Smith',
+    //     email: 'jane.smith@company.com',
+    //     department: 'Marketing',
+    //     position: 'Marketing Manager',
+    //     phone: '+1 234-567-8901',
+    //     joinDate: '2022-06-20',
+    //     status: 'Active',
+    //     leaves: { total: 20, used: 12, available: 8 }
+    //   },
+    //   {
+    //     id: 3,
+    //     name: 'Mike Johnson',
+    //     email: 'mike.johnson@company.com',
+    //     department: 'Sales',
+    //     position: 'Sales Executive',
+    //     phone: '+1 234-567-8902',
+    //     joinDate: '2023-03-10',
+    //     status: 'Active',
+    //     leaves: { total: 20, used: 5, available: 15 }
+    //   },
+    //   {
+    //     id: 4,
+    //     name: 'Sarah Williams',
+    //     email: 'sarah.williams@company.com',
+    //     department: 'HR',
+    //     position: 'HR Specialist',
+    //     phone: '+1 234-567-8903',
+    //     joinDate: '2021-09-05',
+    //     status: 'Active',
+    //     leaves: { total: 20, used: 15, available: 5 }
+    //   },
+    //   {
+    //     id: 5,
+    //     name: 'David Brown',
+    //     email: 'david.brown@company.com',
+    //     department: 'Engineering',
+    //     position: 'Junior Developer',
+    //     phone: '+1 234-567-8904',
+    //     joinDate: '2023-08-01',
+    //     status: 'Inactive',
+    //     leaves: { total: 20, used: 3, available: 17 }
+    //   }
+    // ];
+  //   setEmployees(demoEmployees);
+  // };
 
   useEffect(() => {
     fetchEmployees();
   }, []);
 
-  // ============================================
+  // ==================================================================================
   // FILTER AND SEARCH
-  // ============================================
-  const filteredEmployees = employees.filter(emp => {
-    const matchesSearch = emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         emp.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesDepartment = filterDepartment === 'All' || emp.department === filterDepartment;
-    const matchesStatus = filterStatus === 'All' || emp.status === filterStatus;
-    
+
+  const filteredEmployees = (employees || []).filter(emp => {
+    const name = emp.name || emp.employee_name || "";
+    const email = emp.email || "";
+
+    const matchesSearch =
+      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      email.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesDepartment =
+      filterDepartment === "All" || emp.department === filterDepartment;
+
+    const matchesStatus =
+      filterStatus === "All" || emp.status === filterStatus;
+
     return matchesSearch && matchesDepartment && matchesStatus;
   });
-
-  // ============================================
+  //=======================================================================================
   // HANDLERS
-  // ============================================
-  const handleAddEmployee = () => {
-    setShowAddForm(true);
-  };
+  // const handleAddEmployee = () => {
+  //   setShowAddForm(true);
+  // };
 
   const handleEditEmployee = (employee) => {
     setSelectedEmployee(employee);
     setShowEditForm(true);
   };
+// =======================================================================================
+// Delete Employee
+  const handleDeleteEmployee = async (employeeId) => {
+    if (!window.confirm('Are you sure you want to delete this employee?')) return
 
-  const handleDeleteEmployee = (employeeId) => {
-    if (window.confirm('Are you sure you want to delete this employee?')) {
+    try {
       // TODO: API call to delete employee
-      setEmployees(employees.filter(emp => emp.id !== employeeId));
-      alert('Employee deleted successfully!');
+      const response = await fetch(`http://localhost:8000/deleteemployee/${employeeId}`, {
+        method: 'DELETE',
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        // Remove from frontend state
+        setEmployees(prev => prev.filter(emp => emp.id !== employeeId));
+        alert(data.message || 'Employee deleted successfully!');
+      } else {
+        alert(data.error || "Failed to delete employee")
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong while deleting")
     }
   };
+// ========================================================================================
 
+
+
+// ========================================================================================
   const handleViewDetails = (employee) => {
     setSelectedEmployee(employee);
     // You can show a details modal here
     alert(`Viewing details for ${employee.name}`);
   };
-
+// =======================================================================================
   return (
     <div className="employee-management-container">
       {/* Header */}
-
-    
-
       {/* Stats Cards */}
       <div className="employee-stats-grid">
         <div className="employee-stat-card">
@@ -170,7 +188,7 @@ export default function EmployeeManagement() {
           </div>
           <div className="stat-card-info">
             <p className="stat-card-title">Total Employees</p>
-            <h2 className="stat-card-count" style={{ color: '#667eea' }}>{employees.length}</h2>
+            <h2 className="stat-card-count" style={{ color: '#667eea' }}>{employees?.length}</h2>
           </div>
         </div>
 
@@ -181,7 +199,7 @@ export default function EmployeeManagement() {
           <div className="stat-card-info">
             <p className="stat-card-title">Active</p>
             <h2 className="stat-card-count" style={{ color: '#10b981' }}>
-              {employees.filter(e => e.status === 'Active').length}
+              {employees?.filter(e => e.status === 'Active').length}
             </h2>
           </div>
         </div>
@@ -193,7 +211,7 @@ export default function EmployeeManagement() {
           <div className="stat-card-info">
             <p className="stat-card-title">Inactive</p>
             <h2 className="stat-card-count" style={{ color: '#f59e0b' }}>
-              {employees.filter(e => e.status === 'Inactive').length}
+              {employees?.filter(e => e.status === 'Inactive').length}
             </h2>
           </div>
         </div>
@@ -205,7 +223,7 @@ export default function EmployeeManagement() {
           <div className="stat-card-info">
             <p className="stat-card-title">Departments</p>
             <h2 className="stat-card-count" style={{ color: '#ec4899' }}>
-              {[...new Set(employees.map(e => e.department))].length}
+              {[...new Set(employees?.map(e => e.department))].length}
             </h2>
           </div>
         </div>
@@ -225,7 +243,7 @@ export default function EmployeeManagement() {
           </div>
 
           <div className="filter-group">
-            <select 
+            <select
               className="filter-select"
               value={filterDepartment}
               onChange={(e) => setFilterDepartment(e.target.value)}
@@ -235,12 +253,12 @@ export default function EmployeeManagement() {
               <option value="Marketing">Marketing</option>
               <option value="Sales">Sales</option>
               <option value="HR">HR</option>
-              <option value="Finance">Finance</option>
+              {/* <option value="Finance">Finance</option> */}
             </select>
           </div>
 
           <div className="filter-group">
-            <select 
+            <select
               className="filter-select"
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
@@ -253,7 +271,7 @@ export default function EmployeeManagement() {
         </div>
 
         <div className="results-count">
-          Showing {filteredEmployees.length} of {employees.length} employees
+          Showing {filteredEmployees?.length} of {employees?.length} employees
         </div>
       </div>
 
@@ -280,8 +298,8 @@ export default function EmployeeManagement() {
                     <div className="employee-info-cell">
                       <div className="employee-avatar-cell">
                         {employee.name.split(' ')[0][0]}
-                        {employee.name.split(' ').length > 1 
-                          ? employee.name.split(' ').slice(-1)[0][0] 
+                        {employee.name.split(' ').length > 1
+                          ? employee.name.split(' ').slice(-1)[0][0]
                           : ''}
                       </div>
                       <div className="employee-details">
@@ -293,45 +311,46 @@ export default function EmployeeManagement() {
                   <td>{employee.department}</td>
                   <td>{employee.position}</td>
                   <td>{employee.phone}</td>
-                  <td>{employee.joinDate}</td>
+                  <td>{employee.joinDate?.split('T')[0]}</td>
                   <td>
                     <div className="leave-balance">
                       <span className="balance-text">
-                        {employee.leaves.available}/{employee.leaves.total}
+                         {employee.leaves ? `${employee.leaves.available}/${employee.leaves.total}` : '0/0'}
+
                       </span>
                       <div className="balance-bar">
                         <div 
                           className="balance-bar-fill"
                           style={{ 
-                            width: `${(employee.leaves.available / employee.leaves.total) * 100}%`,
-                            backgroundColor: employee.leaves.available < 5 ? '#ef4444' : '#10b981'
+                            width: `${(employee.leaves?.available / employee.leaves?.total) * 100}%`,
+                            backgroundColor: employee.leaves?.available < 5 ? '#ef4444' : '#10b981'
                           }}
                         ></div>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <span className={`employee-status-badge status-${employee.status.toLowerCase()}`}>
+                    <span className={`employee-status-badge status-${employee.status?.toLowerCase()}`}>
                       {employee.status}
                     </span>
                   </td>
                   <td>
                     <div className="action-buttons">
-                      <button 
+                      <button
                         className="action-btn view-btn"
                         onClick={() => handleViewDetails(employee)}
                         title="View Details"
                       >
                         👁️
                       </button>
-                      <button 
+                      <button
                         className="action-btn edit-btn"
                         onClick={() => handleEditEmployee(employee)}
                         title="Edit"
                       >
                         ✏️
                       </button>
-                      <button 
+                      <button
                         className="action-btn delete-btn"
                         onClick={() => handleDeleteEmployee(employee.id)}
                         title="Delete"
@@ -357,16 +376,16 @@ export default function EmployeeManagement() {
 
       {/* Add Employee Modal */}
       {showAddModal && (
-        <AddEmployeeModal 
+        <AddEmployeeModal
           onClose={() => setShowAddModal(false)}
           onSuccess={fetchEmployees}
-          
+
         />
       )}
 
       {/* Edit Employee Modal */}
       {showEditForm && (
-        <EditEmployeeModal 
+        <EditEmployeeModal
           employee={selectedEmployee}
           onClose={() => setShowEditForm(false)}
           onSuccess={fetchEmployees}
@@ -381,17 +400,39 @@ export default function EmployeeManagement() {
 // EDIT EMPLOYEE MODAL
 // ============================================
 function EditEmployeeModal({ employee, onClose, onSuccess }) {
-  const [formData, setFormData] = useState({
-    ...employee
-  });
+  const [formData, setFormData] = useState({...employee});
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
     // TODO: API call to update employee
-    console.log('Updating employee:', formData);
-    alert('Employee updated successfully!');
-    onSuccess();
-    onClose();
+    
+    try{
+      const response=await fetch(`http://localhost:8000/editemployee/${employee.id}`,
+        {
+        method:"PUT",
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify(formData)
+      });
+      
+      const data = await response.json();
+      if(!response.ok){
+        alert(data.error || "Update failed");
+        return;
+      };
+
+      alert(data.message)
+      onSuccess(); //refresh employees
+      onClose(); //close model
+    }catch(err){
+      console.error(err)
+      alert("something went wrong")
+    }
+    // console.log('Updating employee:', formData);
+    // alert('Employee updated successfully!');
+    // onSuccess();
+    // onClose();
   };
 
   const handleChange = (e) => {
@@ -408,7 +449,7 @@ function EditEmployeeModal({ employee, onClose, onSuccess }) {
           <h2 className="modal-title">Edit Employee</h2>
           <button className="modal-close-btn" onClick={onClose}>✕</button>
         </div>
-
+      <form onSubmit={handleSubmit}>
         <div className="modal-body">
           <div className="form-row">
             <div className="form-group">
@@ -486,7 +527,7 @@ function EditEmployeeModal({ employee, onClose, onSuccess }) {
                 type="date"
                 name="joinDate"
                 className="form-input"
-                value={formData.joinDate}
+                value={formData.joinDate?.split('T')[0]}
                 onChange={handleChange}
                 required
               />
@@ -511,10 +552,12 @@ function EditEmployeeModal({ employee, onClose, onSuccess }) {
           <button className="modal-cancel-btn" onClick={onClose}>
             Cancel
           </button>
-          <button className="modal-submit-btn" onClick={handleSubmit}>
+          <button className="modal-submit-btn" type='submit' >
             Update Employee
           </button>
         </div>
+</form>
+
       </div>
     </div>
   );

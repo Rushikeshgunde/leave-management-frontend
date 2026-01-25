@@ -4,6 +4,7 @@
 
 import React, { useState } from 'react';
 import '../../styles/AddEmployeeModal.css';
+import axios from 'axios';
 
 
 function AddEmployeeModal({ onClose, onSuccess }) {
@@ -17,20 +18,64 @@ function AddEmployeeModal({ onClose, onSuccess }) {
     status: 'Active'
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: API call to add employee
-    console.log('Adding employee:', formData);
-    alert('Employee added successfully!');
-    onSuccess();
-    onClose();
-  };
+  const [error, setError] = useState({})
 
+
+
+  // Handle Input Change
   const handleChange = (e) => {
+
+    const { name, value } = e.target
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    setError({ ...error, [name]: "" })  // clear error on typing
+  };
+
+  // Validation Function..
+  const validate = () => {
+    const newError = {};
+    if (!formData.name) newError.name = "name is required"
+    if (!formData.email) newError.email = "email is required"
+    if (!formData.department) newError.department = "department is required"
+    if (!formData.position) newError.position = "position is required"
+    if (!formData.phone) newError.phone = "phone is required"
+    if (!formData.joinDate) newError.joinDate = "joinDate is required"
+    // if(!formData.status) newError.status ="status is required"
+
+    setError(newError);
+
+    return Object.keys(newError).length === 0
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return
+    // TODO: API call to add employee
+
+    try {
+      const response = await axios.post("http://localhost:8000/addemployee", formData)
+
+      alert(response.data.message)
+      onSuccess();
+      onClose();
+
+    }
+     catch (err) {
+      console.error(err)
+        // ✅ Show exact backend error if available
+        if(err.response && err.response.data && err.response.data.error){
+          alert(err.response.data.error)
+        }else{
+          alert("something went wrong")
+        }
+    }
+
+    console.log('Adding employee:', formData);
+    
+
   };
 
   return (
@@ -41,7 +86,7 @@ function AddEmployeeModal({ onClose, onSuccess }) {
           <button className="modal-close-btn" onClick={onClose}>✕</button>
         </div>
 
-        <div className="modal-body">
+        <form onSubmit={handleSubmit} className="modal-body">
           <div className="form-row">
             <div className="form-group">
               <label className="form-label">Full Name *</label>
@@ -49,11 +94,12 @@ function AddEmployeeModal({ onClose, onSuccess }) {
                 type="text"
                 name="name"
                 className="form-input"
-                placeholder="John Doe"
+                placeholder="Enter Fullname"
                 value={formData.name}
                 onChange={handleChange}
-                required
+              // required
               />
+              {error.name && <span className='error'>{error.name} </span>}
             </div>
 
             <div className="form-group">
@@ -62,11 +108,12 @@ function AddEmployeeModal({ onClose, onSuccess }) {
                 type="email"
                 name="email"
                 className="form-input"
-                placeholder="john.doe@company.com"
+                placeholder="email@company.com"
                 value={formData.email}
                 onChange={handleChange}
-                required
+
               />
+              {error.email && <span className='error'>{error.email} </span>}
             </div>
           </div>
 
@@ -78,15 +125,16 @@ function AddEmployeeModal({ onClose, onSuccess }) {
                 className="form-select"
                 value={formData.department}
                 onChange={handleChange}
-                required
+              // required
               >
                 <option value="">Select Department</option>
                 <option value="Engineering">Engineering</option>
                 <option value="Marketing">Marketing</option>
                 <option value="Sales">Sales</option>
                 <option value="HR">HR</option>
-                <option value="Finance">Finance</option>
+                {/* <option value="Finance">Finance</option>  */}
               </select>
+              {error.department && <span className='error'>{error.department} </span>}
             </div>
 
             <div className="form-group">
@@ -98,8 +146,9 @@ function AddEmployeeModal({ onClose, onSuccess }) {
                 placeholder="Senior Developer"
                 value={formData.position}
                 onChange={handleChange}
-                required
+              // required
               />
+              {error.position && <span className='error'>{error.position} </span>}
             </div>
           </div>
 
@@ -110,11 +159,12 @@ function AddEmployeeModal({ onClose, onSuccess }) {
                 type="tel"
                 name="phone"
                 className="form-input"
-                placeholder="+1 234-567-8900"
+                placeholder="+91"
                 value={formData.phone}
                 onChange={handleChange}
-                required
+              // required
               />
+              {error.phone && <span className='error'>{error.phone} </span>}
             </div>
 
             <div className="form-group">
@@ -125,8 +175,9 @@ function AddEmployeeModal({ onClose, onSuccess }) {
                 className="form-input"
                 value={formData.joinDate}
                 onChange={handleChange}
-                required
+              // required
               />
+              {error.joinDate && <span className='error'>{error.joinDate} </span>}
             </div>
           </div>
 
@@ -142,16 +193,17 @@ function AddEmployeeModal({ onClose, onSuccess }) {
               <option value="Inactive">Inactive</option>
             </select>
           </div>
-        </div>
-
-        <div className="modal-footer">
+          <div className="modal-footer">
           <button className="modal-cancel-btn" onClick={onClose}>
             Cancel
           </button>
-          <button className="modal-submit-btn" onClick={handleSubmit}>
+          <button className="modal-submit-btn" type='submit'>
             Add Employee
           </button>
         </div>
+    </form>
+
+        
       </div>
     </div>
   );
