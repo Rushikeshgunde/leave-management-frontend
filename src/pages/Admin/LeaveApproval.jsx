@@ -22,13 +22,41 @@ const {setHeaderConfig}=useOutletContext();
 
   const [leaveRequests, setLeaveRequests] = useState([]);
 
-  const updateStatus = (id, newStatus) => {
-    setLeaveRequests((prev) =>
-      prev.map((leave) =>
-        leave.id === id ? { ...leave, status: newStatus } : leave
-      )
-    );
-  };
+  // const updateStatus = (id, newStatus) => {
+  //   setLeaveRequests((prev) =>
+  //     prev.map((leave) =>
+  //       leave.id === id ? { ...leave, status: newStatus } : leave
+  //     )
+  //   );
+  // };
+
+  useEffect(()=>{
+    fetchLeaveRequests();
+  },[])
+  // ----------------------------------------------------------------------------------
+  const fetchLeaveRequests = async () => {
+  try {
+    const res = await fetch("http://localhost:8000/admin/leave-requests");
+    const data = await res.json();
+    if (Array.isArray(data)) setLeaveRequests(data);
+    else setLeaveRequests([]);
+  } catch (err) {
+    console.error(err);
+    setLeaveRequests([]);
+  }
+};
+
+
+ const updateStatus = async (id, status) => {
+  await fetch(`http://localhost:8000/admin/leave/${id}/status`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status }),
+  });
+  fetchLeaveRequests(); // refresh after update
+};
+
+  // ----------------------------------------------------------------------------------
 
   return (
     <div className="leave-approval-container">
@@ -62,12 +90,12 @@ const {setHeaderConfig}=useOutletContext();
             ) : (
               leaveRequests.map((leave) => (
                 <tr key={leave.id}>
-                  <td>{leave.name}</td>
-                  <td>{leave.type}</td>
-                  <td>{leave.from}</td>
-                  <td>{leave.to}</td>
-                  <td>{leave.days} </td>
-                  <td>{leave.reason}</td>
+                  <td>{leave.employee_name}</td>
+                  <td>{leave.leave_type}</td>
+                  <td>{leave.from_date.split('T')[0]}</td>
+                  <td>{leave.to_date.split('T')[0]}</td>
+                  <td>{leave.number_of_days} </td>
+                  <td>{leave.leave_reason}</td>
                   <td>
                     <span
                       className={`status-badge ${leave.status.toLowerCase()}`}

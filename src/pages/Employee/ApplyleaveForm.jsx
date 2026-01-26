@@ -25,7 +25,6 @@ const [formData, setformData]=useState({
   contact_number:''
 })
 
-
 const handleChange = (e) => {
   const { name, value } = e.target;
 
@@ -44,19 +43,14 @@ const handleChange = (e) => {
     } else {
       setNumberOfDays(0);
     }
-
     return updated;
   });
 };
 
-
+// =======================================================================================
 // API INTEGRATION POINT - SUBMIT LEAVE REQUEST
-
   const handleSubmit = async(e) => {
     e.preventDefault();
-
-    // const leavedata ={employee_id, employee_name, leave_type, from_date, to_date,  leave_reason, contact_number}
-
     try{
       const response= await fetch("http://localhost:8000/apply_leave",{
         method:"POST",
@@ -70,6 +64,7 @@ const handleChange = (e) => {
 
       if(response.ok){
         alert("leave applied successfully.")
+        // fetchReports()
         console.log(data)
 
         // reset form 
@@ -81,7 +76,7 @@ const handleChange = (e) => {
           to_date:"",
           leave_reason:"",
           contact_number:"",
-          numberOfDays:0
+          numberOfDays:""
         })
         
       }else{
@@ -119,6 +114,8 @@ const handleChange = (e) => {
               <h2 className="apply-form-title">Leave Application Form</h2>
               
               <form onSubmit={handleSubmit} className="apply-form-content">
+
+              <div className='name-leave-type'>
               <div className='apply-form-group'>
                   <label className="apply-form-label" htmlFor="employeeName">
                     <span className="apply-label-icon">👤</span>
@@ -154,7 +151,7 @@ const handleChange = (e) => {
                     {/* <option value="unpaid leave">💼 Unpaid Leave</option> */}
                   </select>
                 </div>
-
+              </div>  
                 <div className="apply-date-row">
                   <div className="apply-form-group">
                     <label className="apply-form-label" htmlFor="fromDate">
@@ -186,7 +183,7 @@ const handleChange = (e) => {
                     />
                   </div>
                 </div>
-
+              <div className='contact-days'>
                 <div className="apply-form-group">
                   <label className="apply-form-label" htmlFor="days">
                     <span className="apply-label-icon">🗓️</span>
@@ -203,22 +200,8 @@ const handleChange = (e) => {
                   />
                 </div>
 
-                <div className="apply-form-group">
-                  <label className="apply-form-label" htmlFor="reason">
-                    <span className="apply-label-icon">✍️</span>
-                    Reason for Leave
-                  </label>
-                  <textarea
-                    id="reason"
-                    name="leave_reason"
-                    rows="4"
-                    className="apply-form-textarea"
-                    value={formData.leave_reason}
-                    onChange={handleChange}
-                    placeholder="Please provide detailed reason for your leave request"
-                  />
-                </div>
-
+                
+          
                 <div className="apply-form-group">
                   <label className="apply-form-label" htmlFor="contactNumber">
                     <span className="apply-label-icon">📞</span>
@@ -234,7 +217,23 @@ const handleChange = (e) => {
                     placeholder="Enter contact number"
                   />
                 </div>
+          </div>
 
+                <div className="apply-form-group">
+                  <label className="apply-form-label" htmlFor="reason">
+                    <span className="apply-label-icon">✍️</span>
+                    Reason for Leave
+                  </label>
+                  <textarea
+                    id="reason"
+                    name="leave_reason"
+                    rows="4"
+                    className="apply-form-textarea"
+                    value={formData.leave_reason}
+                    onChange={handleChange}
+                    placeholder="Please provide detailed reason for your leave request"
+                  />
+                </div>
                 <div className="apply-form-actions">
                   <button type="button" className="apply-cancel-btn">
                     Cancel
