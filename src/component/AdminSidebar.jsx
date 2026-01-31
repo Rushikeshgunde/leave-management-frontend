@@ -1,4 +1,4 @@
-import { useNavigate,useLocation  } from 'react-router-dom';
+import { useNavigate,useLocation, replace  } from 'react-router-dom';
 import React, { useState } from 'react';
 import '../component/adminsidebar.css';
 
@@ -10,9 +10,15 @@ export default function AdminSidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const isActive = (path) => location.pathname === path;
 
+// ----------------------------------------------------------------------------------------------------------
+const handlelogout=()=>{
+  localStorage.removeItem("isLoggedIn")
+  localStorage.removeItem("role")
+  localStorage.removeItem("user")
+  navigate('/',{replace:true} )
+}
 
-
-
+// ----------------------------------------------------------------------------------------------------------
 
   return (
     <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
@@ -59,9 +65,10 @@ export default function AdminSidebar() {
       </nav >
 
       <div className="sidebar-footer">
-        <button className="logout-sidebar-btn">
+        <button onClick={handlelogout}
+         className="logout-sidebar-btn">
           <span className="nav-icon">🚪</span>
-          <span className="nav-text">Logout</span>
+          <span  className="nav-text">Logout</span>
         </button>
       </div>
     </aside>

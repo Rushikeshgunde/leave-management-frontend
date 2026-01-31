@@ -1,7 +1,8 @@
 
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
+import { Outlet, useNavigate,Navigate } from 'react-router-dom';
 import '../../styles/employeDashboard.css';
 
 export default function EmployeeDashboard() {
@@ -30,24 +31,14 @@ export default function EmployeeDashboard() {
 
   // ============================================
   // API INTEGRATION POINT - LOGOUT
+
+  // In your employee route component or layout
+
+
+
   // ============================================
   // TODO: Add logout API call here
-  // Example:
-  // const handleLogout = async () => {
-  //   try {
-  //     await fetch('YOUR_API_URL/logout', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       credentials: 'include'
-  //     });
-  //     // Clear local storage/session
-  //     localStorage.removeItem('authToken');
-  //     // Navigate to login
-  //     navigate('/');
-  //   } catch (error) {
-  //     console.error('Logout failed:', error);
-  //   }
-  // };
+  
 
   const handleLogout = () => {
     // Close the profile menu first
@@ -57,11 +48,12 @@ export default function EmployeeDashboard() {
     alert('Logout successful!');
     
     // Clear any stored authentication data
+    localStorage.clear()
     // localStorage.removeItem('authToken');
-    // sessionStorage.clear();
+    sessionStorage.clear();
     
     // Navigate to login page
-    navigate('/');
+    navigate('/', {replace:true} );
   };
 
   return (

@@ -16,8 +16,8 @@ export default function AdminDashboard() {
     setHeaderConfig({
        title: "Admin Dashboard",
       subtitle: "Overview of leave and employee activity",
-      buttonText: "Apply Leave",
-      showButton: true,
+      // buttonText: "Apply Leave",
+      // showButton: true,
       onButtonClick: () => setShowLeaveForm(true)
     });
       return () => {

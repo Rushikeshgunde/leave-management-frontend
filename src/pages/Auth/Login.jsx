@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './Login.css';
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +15,27 @@ export default function Login() {
     email: '',
     password: ''
   });
+
+  // ==========================================================================================================
+
+
+// ...
+
+useEffect(() => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const role = localStorage.getItem("role");
+
+  if (isLoggedIn === "true") {
+    if (role === "admin") {
+      navigate("/admin", { replace: true });
+    } else if (role === "employee") {
+      navigate("/employee", { replace: true });
+    }
+  }
+}, [navigate]); // run once when component mounts
+
+
+  // ==========================================================================================================
 
   const [showPassword, setShowPassword] = useState(false);
   // const [isLoading, setIsLoading] = useState(false);
@@ -113,9 +134,9 @@ export default function Login() {
 
       setTimeout(() => {
         if (role === "admin") {
-          navigate("/admin");
+          navigate("/admin", {replace:true});
         } else if (role === "employee") {
-          navigate("/employee");
+          navigate("/employee",{replace:true} );
         }
       }, 200);
     };
@@ -158,26 +179,7 @@ export default function Login() {
             {/* Form */}
             <form onSubmit={handleSubmit} className="login-form">
 
-              {/* Role Input */}
-              {/* <div className="input-group">
-                <label className="input-label">Role</label>
-                <div className={`input-wrapper ${errors.Admin ? 'error' : ''}`}>
-                  <span className="input-icon">👤</span>
-                  <select
-                    name="Admin"
-                    value={formData.Admin}
-                    onChange={handleChange}
-                    className="login-input"
-                  >
-                    <option value="">Select Role</option>
-                    <option value="Admin">Admin</option>
-                    <option value="Employee">Employee</option>
-                  </select>
-                </div>
-                {errors.Admin && (
-                  <span className="error-message">{errors.Admin}</span>
-                )}
-              </div> */}
+             
               {/* ------------------------------------------------------------------------------- */}
 
               {/* Email Input */}
@@ -248,8 +250,10 @@ export default function Login() {
             {/* Footer */}
             <div className="login-footer">
               <p className="footer-text">
-                DON'T HAVE AN ACCOUNT?
-                <a href="#" className="create-account-link"> CREATE AN ACCOUNT</a>
+                {/* DON'T HAVE AN ACCOUNT? */}
+                {/* <a href="#" className="create-account-link"> CREATE AN ACCOUNT</a> */}
+                <p> <span style={{color:'red'}}>Note: This credentials only for testing <br /> </span> user:admin@gmail.com, pass:admin123</p>
+                <p> <span style={{color:'red'}}>Note: This credentials only for testing <br /> </span> user:employee@gmail.com, pass:employee123</p>
               </p>
             </div>
           </div>
